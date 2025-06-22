@@ -5,8 +5,6 @@ require('dotenv').config()
 const app = express();
 const cors = require('cors');
 const { GoogleGenAI, Modality } = require('@google/genai');
-const Axios = require('axios');
-const FormData = require('form-data');
 const imagekit = require('./imageKit');
 app.use(cors({
   origin:'https://blog-p9bv8uj8p-durjoychandos-projects.vercel.app',
@@ -15,11 +13,11 @@ app.use(cors({
 app.use(express.json());
 
 // A sample route;
-const uri = `mongodb+srv://${process.env.userDB}:${process.env.PasswordDb}@cluster0.u87dt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.USER_DB}:${process.env.PASSWORD_DB}@cluster0.u87dt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 //-------------------------------ImgBb ApI key --------------------------------------------------//
 
-const Image_API_KEY = `https://api.imgbb.com/1/upload?key=${process.env.ImgBB_API_KEY}`;
+const Image_API_KEY = `https://api.imgbb.com/1/upload?key=${process.env.IMGBB_API_KEY}`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -57,7 +55,7 @@ async function run() {
     })
 
     //-------------------------------------------Gemini text generate--------------------//
-    const ai = new GoogleGenAI({ apiKey: process.env.Gemini_API_KEY });
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     //  console.log(ai)
     app.get('/Gemini/textGenarate', async (req, res) => {
       const text = req?.query?.text;
@@ -76,7 +74,7 @@ async function run() {
       // console.log('hello world Image Generate functions');
       const ImgText = req.query.imgText;
 
-      const ai = new GoogleGenAI({ apiKey: process.env.Gemini_API_KEY });
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       const contents =
         "Hi, can you create a 3d rendered image " + ImgText;
 
