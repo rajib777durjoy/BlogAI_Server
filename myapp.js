@@ -7,7 +7,7 @@ const cors = require('cors');
 const { GoogleGenAI, Modality } = require('@google/genai');
 const imagekit = require('./imageKit');
 app.use(cors({
-  origin:['https://blog-9zll1efg0-durjoychandos-projects.vercel.app'],
+  origin:['https://blog-pato757ce-durjoychandos-projects.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
@@ -118,11 +118,11 @@ async function run() {
 
     //---------------------------------------GET ALL POST DATA--------------------------------//
     app.get('/blog/allpost', async (req, res) => {
-      // const searchText = req.query.key;
-      // const searching = {
-      //   title: { $regex: searchText, $options: 'i' }
-      // };
-      const result = await postCollection.find().toArray();
+      const searchText = req.query.key;
+      const searching = {
+        title: { $regex: searchText, $options: 'i' }
+      };
+      const result = await postCollection.find(searching).toArray();
       // console.log("all post:", result)
       res.send(result)
     })
