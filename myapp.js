@@ -7,7 +7,7 @@ const cors = require('cors');
 const { GoogleGenAI, Modality } = require('@google/genai');
 const imagekit = require('./imageKit');
 app.use(cors({
-  origin:['https://blog-p0ssgtcmp-durjoychandos-projects.vercel.app'],
+  origin:['https://blog-9zll1efg0-durjoychandos-projects.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
